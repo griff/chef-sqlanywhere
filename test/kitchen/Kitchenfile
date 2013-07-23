@@ -1,0 +1,5 @@
+cookbook "sqlanywhere" do
+  configuration "client"
+  configuration "server"
+  configuration "ruby"
+end

@@ -1,0 +1,29 @@
+# <%= node['sqlanywhere']['service_name'] %> - SQLAnywhere 12 Network Server
+#
+# 
+
+description	"SQLAnywhere Server"
+
+start on filesystem
+stop on runlevel [!2345]
+
+#setuid <%= node['sqlanywhere']['user'] %>
+#respawn
+#respawn limit 10 5
+umask 022
+chdir <%= node['sqlanywhere']["data_dir"] %>
+#oom never
+#console log
+
+pre-start script
+    test -x <%= node['sqlanywhere']['install_dir'] %>/<%= node['sqlanywhere']['bin_dir'] %>/dbsrv12 || { stop; exit 0; }
+    test -c /dev/null || { stop; exit 0; }
+end script
+
+exec su -s /bin/bash -c 'exec "$0" "$@"' <%= node['sqlanywhere']['user'] %> -- <%= node['sqlanywhere']['install_dir'] %>/dbsrv.sh
+
+#script
+#  . <%= node['sqlanywhere']['install_dir'] %>/<%= node['sqlanywhere']['bin_dir'] %>/sa_config.sh
+#  dbsrv12 -n sample
+#end script
+

@@ -1,0 +1,11 @@
+--- res/scripts/standard_flow.sh	2012-04-07 04:00:19.910249599 -0700
++++ ../ga1201/res/scripts/standard_flow.sh	2011-10-03 07:39:20.000000000 -0700
+@@ -28,7 +28,7 @@
+ 	    not is_upgrade && not is_key_valid
+ 	    ;;
+ 	panel_license_agreement)
++	    false
+-	    is_developer_key || is_evaluation_key || is_web_key || is_edu_key
+ 	    ;;
+ 	panel_locate_existing_install)
+ 	    is_upgrade || is_modify

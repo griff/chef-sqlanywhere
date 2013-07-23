@@ -1,0 +1,4 @@
+#!/bin/bash
+. <%= node['sqlanywhere']['install_dir'] %>/<%= node['sqlanywhere']['bin_dir'] %>/sa_config.sh
+shopt -s nullglob
+dbsrv12 -su @util_db_pwd_hide.cfg -gu all -n <%= node['sqlanywhere']['server_name'] %> *.db
